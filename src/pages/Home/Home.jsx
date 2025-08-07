@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
+import { TrophySpin } from "react-loading-indicators"
 import { AnimatePresence, motion } from "motion/react"
 
 const Home = () => {
@@ -39,7 +40,9 @@ const Home = () => {
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
       {isLoading && (
-        <motion.h1 initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }}>Hello</motion.h1>
+        <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }}>
+          <TrophySpin color="#009689" size="large" text="LOADING" textColor="" />
+        </motion.div>
       )}
       <AnimatePresence onExitComplete={()=>{setIsLoading(true)}}>
         {!submitComplete && (
