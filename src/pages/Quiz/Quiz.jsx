@@ -1,7 +1,13 @@
 import React from 'react'
 import Button from '../../components/Button'
+import { useQuiz } from '../../context/QuizContext'
 
-const Quiz = () => {
+const Quiz = () => {3
+
+  const { quizData } = useQuiz();
+
+  console.log(quizData);
+
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
       <div className='w-2xl p-4 rounded-lg bg-teal-800 box-border flex flex-col items-center'>

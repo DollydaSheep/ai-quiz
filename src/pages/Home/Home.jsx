@@ -3,12 +3,16 @@ import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { TrophySpin } from "react-loading-indicators"
 import { AnimatePresence, motion } from "motion/react"
+import { useQuiz } from '../../context/QuizContext'
+import { redirect, useNavigate } from 'react-router'
 
 const Home = () => {
 
   const [pdfFile, setPdfFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [submitComplete, setSubmitComplete] = useState(false);
+  const { setQuizData } = useQuiz();
+  const navigate = useNavigate();
 
   const handleFileInput = (e) => {
     setPdfFile(e.target.files[0])
@@ -29,8 +33,12 @@ const Home = () => {
         body: formData
       })
       const data = await res.json();
+
+      setQuizData(data);
       
       console.log(data)
+
+      navigate('/quiz')
 
     } catch(err){
       console.error(err);
