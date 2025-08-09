@@ -44,11 +44,9 @@ const Quiz = () => {
           <div className={`p-1 ${correctCount === 0 ? "bg-white/0" : "bg-green-500"} rounded-lg place-self-start`} style={{ width: `${(correctCount / totalQuestion) * 100}%`}}></div>
         </div>
         <p className='text-white text-lg mb-4'><i>{question[currentQuestion]}</i></p>
-        <div className='w-full flex space-x-2 mb-2'>
+        <div className='w-full grid grid-cols-2 gap-2'>
           <Button className="w-full py-3 text-xl bg-green-400 hover:bg-green-400/80 capitalize">{choices[currentQuestion][0]}</Button>
           <Button className="w-full py-3 text-xl bg-sky-400 hover:bg-sky-400/80 capitalize">{choices[currentQuestion][1]}</Button>
-        </div>
-        <div className='w-full flex space-x-2'>
           <Button className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>
           <Button className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
         </div>
