@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { useQuiz } from '../../context/QuizContext'
 import { TrophySpin } from 'react-loading-indicators'
+import { AnimatePresence, motion } from "motion/react"
 
 const Quiz = () => {
 
@@ -11,7 +12,21 @@ const Quiz = () => {
   const [choices , setChoices] = useState([]);
   const [answer, setAnswer] = useState([]);
 
+  const [showWrong, setShowWrong] = useState(false);
+  const [showCorrect, setShowCorrect] = useState(false);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const handleAnswer = (e, currentQuestion, choiceIndex) => {
+    if(answer[currentQuestion] === choiceIndex){
+      setShowCorrect(true);
+      setCorrectCount(prev => prev + 1);
+      const timer = setTimeout(() => {setShowCorrect(false);setCurrentQuestion(prev => prev + 1)}, 2000);
+    }else{
+      setShowWrong(true);
+      const timer = setTimeout(() => {setShowWrong(false);setCurrentQuestion(prev => prev + 1)}, 2000);
+    }
+  }
 
   useEffect(()=> {
     setQuestion(quizData.questions);
@@ -38,17 +53,29 @@ const Quiz = () => {
 
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
+      <AnimatePresence>
+        {showCorrect && (
+          <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='absolute'>
+            <h1 className='text-green-500 text-4xl font-bold'>Check</h1>
+          </motion.div>
+        )}
+        {showWrong && (
+          <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='absolute'>
+            <h1 className='text-red-500 text-4xl font-bold'>Wrong</h1>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className='w-2xl p-4 rounded-lg bg-teal-800 box-border flex flex-col items-center'>
-        <h1 className='text-white font-bold text-4xl place-self-start mb-4'>Question 1</h1>
+        <h1 className='text-white font-bold text-4xl place-self-start mb-4'>Question {currentQuestion + 1}</h1>
         <div className='w-full rounded-lg bg-gray-200 mb-4'>
-          <div className={`p-1 ${correctCount === 0 ? "bg-white/0" : "bg-green-500"} rounded-lg place-self-start`} style={{ width: `${(correctCount / totalQuestion) * 100}%`}}></div>
+          <div className={`p-1 ${correctCount === 0 ? "bg-white/0" : "bg-green-500"} rounded-lg place-self-start transition-all duration-500 ease-in-out`} style={{ width: `${(correctCount / totalQuestion) * 100}%`}}></div>
         </div>
         <p className='text-white text-lg mb-4'><i>{question[currentQuestion]}</i></p>
         <div className='w-full grid grid-cols-2 gap-2'>
-          <Button className="w-full py-3 text-xl bg-green-400 hover:bg-green-400/80 capitalize">{choices[currentQuestion][0]}</Button>
-          <Button className="w-full py-3 text-xl bg-sky-400 hover:bg-sky-400/80 capitalize">{choices[currentQuestion][1]}</Button>
-          <Button className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>
-          <Button className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
+          <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 0)}} className="w-full py-3 text-xl bg-green-400 hover:bg-green-400/80 capitalize">{choices[currentQuestion][0]}</Button>
+          <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 1)}} className="w-full py-3 text-xl bg-sky-400 hover:bg-sky-400/80 capitalize">{choices[currentQuestion][1]}</Button>
+          <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 2)}} className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>
+          <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 3)}} className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
         </div>
       </div>
     </div>
