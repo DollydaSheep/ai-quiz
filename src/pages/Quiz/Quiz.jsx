@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import { useQuiz } from '../../context/QuizContext'
 import { TrophySpin } from 'react-loading-indicators'
 import { AnimatePresence, motion } from "motion/react"
+import { Check, X} from "lucide-react";
 
 const Quiz = () => {
 
@@ -56,15 +57,17 @@ const Quiz = () => {
       <AnimatePresence>
         {showCorrect && (
           <motion.div initial={{ opacity: 0}} animate={{ opacity: 1}} exit={{ opacity: 0 }} className='absolute w-full h-screen bg-black/20 flex items-center justify-center'>
-            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex justify-center items-center p-12 rounded-lg bg-teal-600'>
-              <h1 className='text-green-500 text-4xl font-bold'>Check</h1>
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex flex-col justify-center items-center p-12 rounded-lg bg-teal-600'>
+              <Check className='text-green-400' size={96} />
+              <h1 className='text-green-400 text-4xl font-bold'>Check</h1>
             </motion.div>
           </motion.div>
         )}
         {showWrong && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='absolute w-full h-screen bg-black/20 flex items-center justify-center'>
-            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex justify-center items-center p-12 rounded-lg bg-teal-600'>
-              <h1 className='text-red-500 text-4xl font-bold'>Check</h1>
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex flex-col justify-center items-center p-12 rounded-lg bg-teal-600'>
+              <X className='text-red-400' size={96} />
+              <h1 className='text-red-400 text-4xl font-bold'>Wrong</h1>
             </motion.div>
           </motion.div>
         )}
