@@ -55,13 +55,17 @@ const Quiz = () => {
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
       <AnimatePresence>
         {showCorrect && (
-          <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='absolute'>
-            <h1 className='text-green-500 text-4xl font-bold'>Check</h1>
+          <motion.div initial={{ opacity: 0}} animate={{ opacity: 1}} exit={{ opacity: 0 }} className='absolute w-full h-screen bg-black/20 flex items-center justify-center'>
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex justify-center items-center p-12 rounded-lg bg-teal-600'>
+              <h1 className='text-green-500 text-4xl font-bold'>Check</h1>
+            </motion.div>
           </motion.div>
         )}
         {showWrong && (
-          <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='absolute'>
-            <h1 className='text-red-500 text-4xl font-bold'>Wrong</h1>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='absolute w-full h-screen bg-black/20 flex items-center justify-center'>
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className='flex justify-center items-center p-12 rounded-lg bg-teal-600'>
+              <h1 className='text-red-500 text-4xl font-bold'>Check</h1>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
