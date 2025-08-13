@@ -4,7 +4,7 @@ import Button from '../../components/Button'
 import { TrophySpin } from "react-loading-indicators"
 import { AnimatePresence, motion } from "motion/react"
 import { useQuiz } from '../../context/QuizContext'
-import { redirect, useNavigate } from 'react-router'
+import {  useNavigate } from 'react-router'
 
 const Home = () => {
 
@@ -27,7 +27,7 @@ const Home = () => {
     setSubmitComplete(true);
 
     try{
-      const res = await fetch("http://localhost:3000/prompt?questionCount=10",{
+      const res = await fetch("http://localhost:3000/prompt?questionCount=5",{
         method: 'POST',
         encType: 'multipart/form-data',
         body: formData

@@ -4,10 +4,12 @@ import { useQuiz } from '../../context/QuizContext'
 import { TrophySpin } from 'react-loading-indicators'
 import { AnimatePresence, motion } from "motion/react"
 import { Check, X} from "lucide-react";
+import {  useNavigate } from 'react-router'
 
 const Quiz = () => {
 
   const { quizData, correctCount, setCorrectCount, totalQuestion, setTotalQuestion } = useQuiz();
+  const navigate = useNavigate();
 
   const [question , setQuestion] = useState([]);
   const [choices , setChoices] = useState([]);
@@ -22,10 +24,18 @@ const Quiz = () => {
     if(answer[currentQuestion] === choiceIndex){
       setShowCorrect(true);
       setCorrectCount(prev => prev + 1);
-      const timer = setTimeout(() => {setShowCorrect(false);setCurrentQuestion(prev => prev + 1)}, 2000);
+      const timer = setTimeout(() => {setShowCorrect(false);incrementCurrentQuestion}, 2000);
     }else{
       setShowWrong(true);
-      const timer = setTimeout(() => {setShowWrong(false);setCurrentQuestion(prev => prev + 1)}, 2000);
+      const timer = setTimeout(() => {setShowWrong(false);incrementCurrentQuestion()}, 2000);
+    }
+  }
+
+  const incrementCurrentQuestion = () => {
+    if(currentQuestion + 1 === totalQuestion-1){
+      navigate('/result');
+    }else {
+      setCurrentQuestion(prev => prev + 1);
     }
   }
 
