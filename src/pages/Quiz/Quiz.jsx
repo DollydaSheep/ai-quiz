@@ -24,7 +24,7 @@ const Quiz = () => {
     if(answer[currentQuestion] === choiceIndex){
       setShowCorrect(true);
       setCorrectCount(prev => prev + 1);
-      const timer = setTimeout(() => {setShowCorrect(false);incrementCurrentQuestion}, 2000);
+      const timer = setTimeout(() => {setShowCorrect(false);incrementCurrentQuestion()}, 2000);
     }else{
       setShowWrong(true);
       const timer = setTimeout(() => {setShowWrong(false);incrementCurrentQuestion()}, 2000);
@@ -32,7 +32,7 @@ const Quiz = () => {
   }
 
   const incrementCurrentQuestion = () => {
-    if(currentQuestion + 1 === totalQuestion-1){
+    if(currentQuestion + 1 === totalQuestion){
       navigate('/result');
     }else {
       setCurrentQuestion(prev => prev + 1);
@@ -88,7 +88,7 @@ const Quiz = () => {
           <div className={`p-1 ${correctCount === 0 ? "bg-white/0" : "bg-green-500"} rounded-lg place-self-start transition-all duration-500 ease-in-out`} style={{ width: `${(correctCount / totalQuestion) * 100}%`}}></div>
         </div>
         <p className='text-white text-lg mb-4'><i>{question[currentQuestion]}</i></p>
-        <div className='w-full grid grid-cols-2 gap-2'>
+        <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-2'>
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 0)}} className="w-full py-3 text-xl bg-green-400 hover:bg-green-400/80 capitalize">{choices[currentQuestion][0]}</Button>
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 1)}} className="w-full py-3 text-xl bg-sky-400 hover:bg-sky-400/80 capitalize">{choices[currentQuestion][1]}</Button>
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 2)}} className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>

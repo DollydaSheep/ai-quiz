@@ -9,11 +9,13 @@ const MotionTrophy = motion(TrophyIcon);
 
 const Result = () => {
 
-  const { correctCount, totalQuestion } = useQuiz();
+  const { correctCount, setCorrectCount , totalQuestion, setTotalQuestion } = useQuiz();
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/")
+    navigate("/");
+    setCorrectCount(0);
+    setTotalQuestion(0);
   }
 
   return (

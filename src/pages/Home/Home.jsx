@@ -11,15 +11,38 @@ const Home = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [submitComplete, setSubmitComplete] = useState(false);
+  const [error, setError] = useState("");
+
+  const allowedTypes = ["application/pdf"];
+
   const { setQuizData } = useQuiz();
   const navigate = useNavigate();
 
   const handleFileInput = (e) => {
-    setPdfFile(e.target.files[0])
+    const selectedFile = e.target.files[0];
+    setError("");
+
+    if(!selectedFile){
+      setError("Please select a file!");
+      setPdfFile(null)
+    }
+
+    if(!allowedTypes.includes(selectedFile.type)){
+      setError("Invalid file type!");
+      setPdfFile(null)
+    }
+
+    setPdfFile(selectedFile)
+    
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(!pdfFile){
+      setError("You must choose a valid file before submitting!");
+      return;
+    }
 
     const formData = new FormData();
     formData.append('pdfFile', pdfFile);
@@ -69,9 +92,10 @@ const Home = () => {
             <form onSubmit={handleSubmit} className='place-self-start mb-4'>
               <div>
                 <label htmlFor="" className='text-white'>Upload Study Material <span className='text-gray-200/70 text-xs'>(pdf,ppt,etc.)</span></label>
-                <Input onChange={handleFileInput} type="file" className='my-2' />
+                <Input onChange={handleFileInput} type="file" className={`my-2 border ring-[3px] ${error ? "border-red-500 ring-red-500/50" : "border-transparent ring-transparent"}`} />
               </div>
-              <Button type="submit" value="Submit" className="w-30 py-2">Submit</Button>
+              {error && (<p className='text-red-400 text-sm mb-2'>{error}</p>)}
+              <Button type="submit" value="Submit" className={`w-30 py-2 `}>Submit</Button>
             </form>
           </motion.div >)}
       </AnimatePresence>
