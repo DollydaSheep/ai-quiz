@@ -17,6 +17,11 @@ const Result = () => {
     setCorrectCount(0);
     setTotalQuestion(0);
   }
+  
+  const handleRetry = () => {
+    navigate("/quiz")
+    setCorrectCount(0);
+  }
 
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
@@ -29,7 +34,7 @@ const Result = () => {
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.5 }} className='w-full'>
           <div className='w-full grid grid-cols-2 gap-4 mb-4'>
-            <Button className="bg-white hover:bg-white/20 text-green-600 hover:text-white">Retry</Button>
+            <Button className="bg-white hover:bg-white/20 text-green-600 hover:text-white" onClick={handleRetry}>Retry</Button>
             <Button className="bg-white hover:bg-white/20 text-green-600 hover:text-white">Save</Button>
           </div>
           <Button className="w-full" onClick={handleBack}>Back</Button>
