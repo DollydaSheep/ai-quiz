@@ -5,6 +5,7 @@ import { TrophySpin } from "react-loading-indicators"
 import { AnimatePresence, motion } from "motion/react"
 import { useQuiz } from '../../context/QuizContext'
 import {  useNavigate } from 'react-router'
+import SavedQuizzes from './SavedQuizzes'
 
 const Home = () => {
 
@@ -70,6 +71,7 @@ const Home = () => {
 
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
+      <SavedQuizzes/>
       {isLoading && (
         <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }}>
           <TrophySpin color="#009689" size="large" text="LOADING" textColor="" />
@@ -106,7 +108,7 @@ const Home = () => {
               </div>
             </div>
             <h1 className='text-white self-start mb-2'>Continue Previous Session</h1>
-            <div className='flex flex-col justify-center w-full p-6 bg-white/20 rounded-lg'>
+            <div className='flex flex-col justify-center w-full p-6 mb-2 bg-white/20 rounded-lg shadow-md'>
               <h1 className='text-center text-4xl text-teal-400'>12</h1>
               <h1 className='text-center text-lg text-white font-medium'>Saved Quizzes</h1>
             </div>
