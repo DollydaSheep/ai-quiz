@@ -102,7 +102,7 @@ const Home = () => {
             <form onSubmit={handleSubmit} className='place-self-start mb-4 w-full'>
               <div>
                 <label htmlFor="" className='text-white'>Upload Study Material <span className='text-gray-200/70 text-xs'>(pdf,ppt,etc.)</span></label>
-                <Input onChange={handleFileInput} type="file" className={`w-full p-3 lg:p-4 my-2 hover:bg-white/20 cursor-pointer border ring-[3px] ${error ? "border-red-500 ring-red-500/50" : "border-transparent ring-transparent"}`} />
+                <Input onChange={handleFileInput} type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx" className={`w-full p-3 lg:p-4 my-2 hover:bg-white/20 cursor-pointer border ring-[3px] ${error ? "border-red-500 ring-red-500/50" : "border-transparent ring-transparent"}`} />
               </div>
               {error && (<p className='text-red-400 text-sm mb-2'>{error}</p>)}
               <Button type="submit" value="Submit" disabled={!!error || pdfFile === null} className={`w-30 py-2 ${(!!error || pdfFile === null) ? "pointer-events-none opacity-50" : ""}`}>Submit</Button>
