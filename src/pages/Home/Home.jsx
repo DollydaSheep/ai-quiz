@@ -61,6 +61,10 @@ const Home = () => {
         encType: 'multipart/form-data',
         body: formData
       })
+
+      const text = await res.text();
+      console.log("Raw response:", text);
+
       const data = await res.json();
 
       setQuizData(data);
