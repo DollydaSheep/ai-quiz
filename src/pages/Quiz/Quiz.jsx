@@ -82,8 +82,15 @@ const Quiz = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className='w-2xl p-4 rounded-lg bg-teal-800 box-border flex flex-col items-center'>
-        <h1 className='text-white font-bold text-4xl place-self-start mb-4'>Question {currentQuestion + 1}</h1>
+      <motion.div 
+          key={currentQuestion}
+          initial={{opacity: 0, y: 10 }}
+          animate={{opacity: 1, y: 0 }} 
+          className='w-2xl p-4 rounded-lg bg-teal-800 box-border flex flex-col items-center'>
+        <div className='flex justify-between items-center self-start w-full'>
+          <h1 className='text-white font-bold text-4xl mb-4'>Question {currentQuestion + 1}</h1>
+          <p className='text-white/50 text-sm font-medium mr-4'>{correctCount} out of {totalQuestion}</p>
+        </div>
         <div className='w-full rounded-lg bg-gray-200 mb-4'>
           <div className={`p-1 ${correctCount === 0 ? "bg-white/0" : "bg-green-500"} rounded-lg place-self-start transition-all duration-500 ease-in-out`} style={{ width: `${(correctCount / totalQuestion) * 100}%`}}></div>
         </div>
@@ -94,7 +101,7 @@ const Quiz = () => {
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 2)}} className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 3)}} className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
