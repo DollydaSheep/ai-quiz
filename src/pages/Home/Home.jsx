@@ -13,11 +13,16 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [submitComplete, setSubmitComplete] = useState(false);
   const [error, setError] = useState("");
+  const [savedQuizModal, setSavedQuizModal] = useState(false);
 
   const allowedTypes = ["application/pdf"];
 
   const { setQuizData } = useQuiz();
   const navigate = useNavigate();
+
+  const handleSavedQuiz = () => {
+    setSavedQuizModal(true);
+  }
 
   const handleFileInput = (e) => {
     const selectedFile = e.target.files[0];
@@ -71,7 +76,9 @@ const Home = () => {
 
   return (
     <div className='w-full h-screen flex justify-center items-center p-4 box-border'>
-      <SavedQuizzes/>
+      <AnimatePresence>
+        {savedQuizModal && (<SavedQuizzes setSavedQuizModal={setSavedQuizModal}/>)}
+      </AnimatePresence>
       {isLoading && (
         <motion.div initial={{ opacity: 0, scale: 0.5}} animate={{ opacity: 1, scale: 1 }}>
           <TrophySpin color="#009689" size="large" text="LOADING" textColor="" />
@@ -112,7 +119,7 @@ const Home = () => {
               <h1 className='text-center text-4xl text-teal-400'>12</h1>
               <h1 className='text-center text-lg text-white font-medium'>Saved Quizzes</h1>
             </div>
-            <Button className={"self-start my-2 w-full"}>Saved Quiz</Button>
+            <Button className={"self-start my-2 w-full"} onClick={handleSavedQuiz}>Saved Quiz</Button>
           </motion.div >)}
       </AnimatePresence>
     </div>
