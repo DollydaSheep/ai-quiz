@@ -31,6 +31,10 @@ const Quiz = () => {
     }
   }
 
+  const handleHome = () => {
+    navigate("/")
+  }
+
   const incrementCurrentQuestion = () => {
     if(currentQuestion + 1 === totalQuestion){
       navigate('/result');
@@ -101,6 +105,8 @@ const Quiz = () => {
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 2)}} className="w-full py-3 text-xl bg-yellow-400 hover:bg-yellow-400/80 capitalize">{choices[currentQuestion][2]}</Button>
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 3)}} className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
         </div>
+        <div className='border-b border-gray-100/80 w-full my-4'></div>
+        <Button className="self-end w-30" onClick={handleHome}>Home</Button>
       </motion.div>
     </div>
   )
