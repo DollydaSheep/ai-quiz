@@ -56,7 +56,7 @@ const Home = () => {
     setSubmitComplete(true);
 
     try{
-      const res = await fetch("http://localhost:3000/prompt?questionCount=5",{
+      const res = await fetch("https://melgwapoai-nodeapp.netlify.app/.netlify/functions/api/prompt?questionCount=5",{
         method: 'POST',
         encType: 'multipart/form-data',
         body: formData
