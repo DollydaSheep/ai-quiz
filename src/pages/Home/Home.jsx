@@ -15,7 +15,7 @@ const Home = () => {
   const [error, setError] = useState("");
   const [savedQuizModal, setSavedQuizModal] = useState(false);
 
-  const allowedTypes = ["application/pdf"];
+  const allowedTypes = ["application/pdf","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.presentationml.presentation"];
 
   const { setQuizData } = useQuiz();
   const navigate = useNavigate();
