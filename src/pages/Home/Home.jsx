@@ -55,8 +55,10 @@ const Home = () => {
 
     setSubmitComplete(true);
 
+    console.log("api:",import.meta.env.VITE_API_URL)
+
     try{
-      const res = await fetch("https://melgwapoai-nodeapp.netlify.app/.netlify/functions/api/prompt?questionCount=5",{
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/prompt?questionCount=5 `,{
         method: 'POST',
         encType: 'multipart/form-data',
         body: formData
