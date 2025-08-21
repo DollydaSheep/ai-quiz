@@ -60,7 +60,6 @@ const Home = () => {
     try{
       const res = await fetch(`${import.meta.env.VITE_API_URL}/prompt?questionCount=5`,{
         method: 'POST',
-        encType: 'multipart/form-data',
         body: formData
       })
 
