@@ -18,6 +18,11 @@ const Quiz = () => {
   const [showWrong, setShowWrong] = useState(false);
   const [showCorrect, setShowCorrect] = useState(false);
 
+  const handleRetry = () => {
+    setCurrentQuestion(0);
+    setCorrectCount(0)
+  }
+
   const handleAnswer = (e, currentQuestion, choiceIndex) => {
     if(answer[currentQuestion] === choiceIndex){
       setShowCorrect(true);
@@ -104,7 +109,10 @@ const Quiz = () => {
           <Button onClick={(e)=>{handleAnswer(e, currentQuestion, 3)}} className="w-full py-3 text-xl bg-red-400 hover:bg-red-400/80 capitalize">{choices[currentQuestion][3]}</Button>
         </div>
         <div className='border-b border-gray-100/80 w-full my-4'></div>
-        <Button className="self-end w-30" onClick={handleHome}>Home</Button>
+        <div className='flex justify-between w-full'>
+          <Button className="w-30" onClick={handleRetry}>Retry</Button>
+          <Button className="self-end w-30" onClick={handleHome}>Home</Button>
+        </div>
       </motion.div>
     </div>
   )

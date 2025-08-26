@@ -9,7 +9,7 @@ const MotionTrophy = motion(TrophyIcon);
 
 const Result = () => {
 
-  const { correctCount, setCorrectCount , totalQuestion, setTotalQuestion } = useQuiz();
+  const { correctCount, setCorrectCount , totalQuestion, setTotalQuestion, setCurrentQuestion } = useQuiz();
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -21,6 +21,7 @@ const Result = () => {
   const handleRetry = () => {
     navigate("/quiz")
     setCorrectCount(0);
+    setCurrentQuestion(0);
   }
 
   return (
