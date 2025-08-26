@@ -8,7 +8,7 @@ import {  useNavigate } from 'react-router'
 
 const Quiz = () => {
 
-  const { quizData, correctCount, setCorrectCount, totalQuestion, setTotalQuestion } = useQuiz();
+  const { quizData, correctCount, setCorrectCount, totalQuestion, setTotalQuestion, currentQuestion, setCurrentQuestion } = useQuiz();
   const navigate = useNavigate();
 
   const [question , setQuestion] = useState([]);
@@ -17,8 +17,6 @@ const Quiz = () => {
 
   const [showWrong, setShowWrong] = useState(false);
   const [showCorrect, setShowCorrect] = useState(false);
-
-  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const handleAnswer = (e, currentQuestion, choiceIndex) => {
     if(answer[currentQuestion] === choiceIndex){

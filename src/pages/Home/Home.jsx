@@ -17,7 +17,7 @@ const Home = () => {
 
   const allowedTypes = ["application/pdf","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.presentationml.presentation"];
 
-  const { setQuizData } = useQuiz();
+  const { quizData, setQuizData } = useQuiz();
   const navigate = useNavigate();
 
   const handleSavedQuiz = () => {
@@ -40,6 +40,12 @@ const Home = () => {
 
     setPdfFile(selectedFile)
     
+  }
+
+  const handlePreviousSession = () => {
+    if(quizData){
+      navigate('/quiz');
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -66,6 +72,8 @@ const Home = () => {
       const data = await res.json();
 
       setQuizData(data);
+
+      localStorage.setItem("recentQuiz", JSON.stringify(data));
       
       console.log(data)
 
@@ -122,7 +130,7 @@ const Home = () => {
                 <div className='flex flex-col justify-center w-full p-6 mb-2 bg-white/20 rounded-lg shadow-md grow'>
                   <h1 className='text-center text-lg text-white font-medium'>Quiz Name</h1>
                 </div>
-                <Button className={"self-start my-2 w-full"} >Previous Session</Button>
+                <Button className={"self-start my-2 w-full"} onClick={handlePreviousSession}>Previous Session</Button>
               </div>
 
               <div>
