@@ -116,12 +116,25 @@ const Home = () => {
                 <p className='text-white p-2 bg-teal-800'>or</p>
               </div>
             </div>
-            <h1 className='text-white self-start mb-2'>Continue Previous Session</h1>
-            <div className='flex flex-col justify-center w-full p-6 mb-2 bg-white/20 rounded-lg shadow-md'>
-              <h1 className='text-center text-4xl text-teal-400'>12</h1>
-              <h1 className='text-center text-lg text-white font-medium'>Saved Quizzes</h1>
+            <div className='grid grid-cols-2 w-full gap-2'>
+              <div className='flex flex-col'>
+                <h1 className='text-white self-start mb-2'>Continue Previous Session</h1>
+                <div className='flex flex-col justify-center w-full p-6 mb-2 bg-white/20 rounded-lg shadow-md grow'>
+                  <h1 className='text-center text-lg text-white font-medium'>Quiz Name</h1>
+                </div>
+                <Button className={"self-start my-2 w-full"} >Previous Session</Button>
+              </div>
+
+              <div>
+                <h1 className='text-white self-start mb-2'>Load Saved Quizzes</h1>
+                <div className='flex flex-col justify-center w-full p-6 mb-2 bg-white/20 rounded-lg shadow-md grow'>
+                  <h1 className='text-center text-4xl text-teal-400'>12</h1>
+                  <h1 className='text-center text-lg text-white font-medium'>Saved Quizzes</h1>
+                </div>
+                <Button className={"self-start my-2 w-full"} onClick={handleSavedQuiz}>Saved Quiz</Button>
+              </div>
             </div>
-            <Button className={"self-start my-2 w-full"} onClick={handleSavedQuiz}>Saved Quiz</Button>
+            
           </motion.div >)}
       </AnimatePresence>
     </div>
